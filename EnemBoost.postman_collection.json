@@ -1,0 +1,632 @@
+{
+  "info": {
+    "_postman_id": "008a8333-3e6b-4005-96e0-c14436be6189",
+    "name": "EnemBoost",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "38653530"
+  },
+  "item": [
+    {
+      "name": "1. Autenticação",
+      "item": [
+        {
+          "name": "Registrar Usuário",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Professor Teste\",\n  \"email\": \"prof@teste.com\",\n  \"senha\": \"123456\",\n  \"papel\": \"admin\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/registrar",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "registrar"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"prof@teste.com\",\n  \"senha\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Visualizar Perfil",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/eu",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "eu"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2. Conteúdos",
+      "item": [
+        {
+          "name": "Listar Conteúdos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/conteudos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "conteudos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Conteúdo (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Fórmula de Bhaskara\",\n  \"descricao\": \"Como calcular raízes de equações do 2º grau\",\n  \"corpo\": \"A fórmula é...\",\n  \"materia\": \"Matemática\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/conteudos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "conteudos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar Conteúdo (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Fórmula de Bhaskara Atualizada\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/conteudos/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "conteudos",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "ID_DO_CONTEUDO"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obter Conteúdo Específico",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/conteudos/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "conteudos",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "ID_DO_CONTEUDO"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar Conteúdo (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/conteudos/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "conteudos",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "ID_DO_CONTEUDO"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "3. Questões",
+      "item": [
+        {
+          "name": "Listar Questões",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/questoes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "questoes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Questão (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texto\": \"Quanto é 2 + 2?\",\n  \"materia\": \"Matemática\",\n  \"topico\": \"Aritmética\",\n  \"opcaoCorreta\": \"C\",\n  \"opcoes\": [\n    { \"identificador\": \"A\", \"texto\": \"1\" },\n    { \"identificador\": \"B\", \"texto\": \"3\" },\n    { \"identificador\": \"C\", \"texto\": \"4\" },\n    { \"identificador\": \"D\", \"texto\": \"5\" },\n    { \"identificador\": \"E\", \"texto\": \"6\" }\n  ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/questoes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "questoes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Responder Questão",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resposta\": \"C\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/questoes/:id/responder",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "questoes",
+                ":id",
+                "responder"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "ID_AQUI"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar Questão (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/questoes/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "questoes",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "ID_DA_QUESTAO"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar Questão (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texto\": \"Quanto é 2 + 3?\",\n  \"opcaoCorreta\": \"D\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/questoes/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "questoes",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "ID_DA_QUESTAO"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "4. Simulados",
+      "item": [
+        {
+          "name": "Listar Simulados",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/exames",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "exames"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Simulado (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Simulado Teste\",\n  \"descricao\": \"Testando criação\",\n  \"questoes\": []\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/exames",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "exames"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Enviar Respostas do Simulado",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"respostas\": [\n    {\n      \"questao\": \"ID_DA_QUESTAO\",\n      \"opcaoSelecionada\": \"C\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/exames/:id/tentativas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "exames",
+                ":id",
+                "tentativas"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "ID_DO_EXAME"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "5. Painel/Dashboard",
+      "item": [
+        {
+          "name": "Estatísticas do Usuário",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/painel",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "painel"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "6. GraphQL",
+      "item": [
+        {
+          "name": "Query: Listar Exames",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query ObterExames {\n  obterExames {\n    id\n    titulo\n    descricao\n    questoes {\n      texto\n      materia\n    }\n    usuario {\n      nome\n    }\n  }\n}",
+                "variables": ""
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Query: Obter Painel",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query ObterEstatisticasPainel {\n  obterEstatisticasPainel {\n    totalExamesRealizados\n    pontuacaoMedia\n    desempenhoPorMateria {\n      materia\n      precisao\n    }\n  }\n}",
+                "variables": ""
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "token",
+      "value": "cole_seu_token_aqui"
+    }
+  ]
+}
