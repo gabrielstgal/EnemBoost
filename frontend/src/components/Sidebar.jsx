@@ -32,8 +32,6 @@ export default function Sidebar() {
                 </Link>
             </nav>
 
-
-
             <div className="sidebar-bottom">
                 <Link to="#" className="sidebar-link">
                     <Gear /> Configurações

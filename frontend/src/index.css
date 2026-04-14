@@ -284,10 +284,126 @@ input, button {
     font-size: 24px;
 }
 .user-avatar {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+/* ================== PERFIL DROPDOWN ================== */
+.perfil-container {
+    position: relative;
+}
+
+.perfil-trigger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: none;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.perfil-trigger:hover {
+    background-color: var(--surface-alt);
+    border-color: var(--border);
+}
+
+.perfil-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.perfil-nome {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+    line-height: 1;
+}
+
+.perfil-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 1px 8px;
+    border-radius: 99px;
+    line-height: 1.4;
+}
+.badge-admin {
+    background-color: #DBEAFE;
+    color: #1D4ED8;
+}
+.badge-user {
+    background-color: #D1FAE5;
+    color: #065F46;
+}
+
+.perfil-caret {
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+}
+.perfil-caret.aberto {
+    transform: rotate(180deg);
+}
+
+.perfil-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 240px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    z-index: 100;
+    overflow: hidden;
+}
+
+.dropdown-header {
+    padding: 14px 16px;
+}
+.dropdown-nome {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+.dropdown-email {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: var(--border);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: var(--text-main);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s ease;
+}
+.dropdown-item:hover {
+    background-color: var(--surface-alt);
+}
+
+.dropdown-logout {
+    color: #DC2626;
+}
+.dropdown-logout:hover {
+    background-color: #FEF2F2;
 }
 
 .content-area {
@@ -589,6 +705,187 @@ footer {
 }
 .footer-links a:hover {
     color: var(--text-main);
+}
+
+/* ================== MODAL ADMIN ================== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 24px;
+}
+
+.modal-content {
+    background: white;
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 24px 0;
+}
+.modal-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    display: flex;
+}
+.modal-close:hover {
+    background-color: var(--surface-alt);
+    color: var(--text-main);
+}
+
+.modal-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modal-label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.modal-input {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    color: var(--text-main);
+    transition: border-color 0.2s;
+    font-family: inherit;
+    resize: vertical;
+}
+.modal-input:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.modal-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.modal-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-top: 4px;
+}
+
+.modal-opcao-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-opcao-row .modal-input {
+    flex: 1;
+}
+
+.modal-letra {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    background-color: var(--surface-alt);
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+.modal-letra.letra-correta {
+    background-color: #D1FAE5;
+    color: #065F46;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 16px 24px 24px;
+    border-top: 1px solid var(--border);
+}
+
+/* Upload Dropzone */
+.upload-dropzone {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-md);
+    padding: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.upload-dropzone:hover {
+    border-color: var(--primary);
+    background-color: #F8FAFC;
+}
+.upload-dropzone.has-file {
+    border-color: var(--primary);
+    background-color: #EFF6FF;
+    padding: 16px;
+}
+
+.upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+}
+.upload-placeholder p {
+    font-size: 14px;
+}
+
+.upload-file-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.upload-remove {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    margin-left: auto;
+    display: flex;
+    border-radius: var(--radius-sm);
+}
+.upload-remove:hover {
+    background-color: #FEE2E2;
+    color: #DC2626;
 }
 
 /* ================== RESPONSIVIDADE ================== */

@@ -354,7 +354,7 @@ const seedData = async () => {
                 topico: 'Figuras de Linguagem',
                 usuario: adminId
             },
-            ...novasQuestoes
+            ...novasQuestoes,
         ]);
         console.log(`✅ ${questoesInjetadas.length} Questões criadas.`);
 

@@ -1,26 +1,46 @@
 import { useState, useEffect } from 'react';
 import { questaoService } from '../services/api';
-import { Funnel, CheckCircle, XCircle } from '@phosphor-icons/react';
+import { useAuth } from '../context/AuthContext';
+import { Funnel, CheckCircle, XCircle, Plus, X } from '@phosphor-icons/react';
 import './Questoes.css';
 
 export default function Questoes() {
+    const { usuario } = useAuth();
+    const isAdmin = usuario?.papel === 'admin';
+
     const [questoes, setQuestoes] = useState([]);
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState(null);
-    
+
     // Filtro ativo
     const [filtroMateria, setFiltroMateria] = useState('');
-    
+
     // Paginação
     const [pagina, setPagina] = useState(1);
     const QUESTOES_POR_PAGINA = 5;
 
     // Estado das respostas submetidas
-    // { questaoId: { selecionada: 'A', estaCorreta: false, corretaReal: 'C' } }
     const [respostas, setRespostas] = useState({});
-    
+
     // Estado temporário de opção selecionada antes de enviar
     const [selecoesTemp, setSelecoesTemp] = useState({});
+
+    // Modal de criar questão (admin)
+    const [modalAberto, setModalAberto] = useState(false);
+    const [salvando, setSalvando] = useState(false);
+    const [novaQuestao, setNovaQuestao] = useState({
+        texto: '',
+        materia: 'Matemática',
+        topico: '',
+        opcaoCorreta: 'A',
+        opcoes: [
+            { texto: '', identificador: 'A' },
+            { texto: '', identificador: 'B' },
+            { texto: '', identificador: 'C' },
+            { texto: '', identificador: 'D' },
+            { texto: '', identificador: 'E' },
+        ]
+    });
 
     useEffect(() => {
         carregarQuestoes();
@@ -85,14 +105,54 @@ export default function Questoes() {
         setPagina(pagina + 1);
     };
 
+    // Admin: criar questão
+    const handleOpcaoChange = (index, valor) => {
+        const novasOpcoes = [...novaQuestao.opcoes];
+        novasOpcoes[index] = { ...novasOpcoes[index], texto: valor };
+        setNovaQuestao({ ...novaQuestao, opcoes: novasOpcoes });
+    };
+
+    const handleCriarQuestao = async () => {
+        if (!novaQuestao.texto.trim()) return alert('Preencha o enunciado.');
+        if (novaQuestao.opcoes.some(o => !o.texto.trim())) return alert('Preencha todas as 5 alternativas.');
+
+        setSalvando(true);
+        try {
+            await questaoService.criarQuestao(novaQuestao);
+            setModalAberto(false);
+            setNovaQuestao({
+                texto: '', materia: 'Matemática', topico: '', opcaoCorreta: 'A',
+                opcoes: [
+                    { texto: '', identificador: 'A' },
+                    { texto: '', identificador: 'B' },
+                    { texto: '', identificador: 'C' },
+                    { texto: '', identificador: 'D' },
+                    { texto: '', identificador: 'E' },
+                ]
+            });
+            carregarQuestoes();
+        } catch (err) {
+            alert('Erro ao criar questão: ' + err.message);
+        } finally {
+            setSalvando(false);
+        }
+    };
+
     const questoesExibidas = questoes.slice(0, pagina * QUESTOES_POR_PAGINA);
     const materiasDisponiveis = ['', 'Matemática', 'Linguagens', 'Natureza', 'Humanas', 'Redação'];
 
     return (
         <div className="container" style={{ maxWidth: '900px', padding: 0 }}>
-            <div className="page-header">
-                <h1>Banco de Questões</h1>
-                <p>Pratique de forma direcionada. Escolha a matéria e responda instantaneamente.</p>
+            <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <div>
+                    <h1>Banco de Questões</h1>
+                    <p>Pratique de forma direcionada. Escolha a matéria e responda instantaneamente.</p>
+                </div>
+                {isAdmin && (
+                    <button className="btn btn-primary" onClick={() => setModalAberto(true)}>
+                        <Plus weight="bold" /> Nova Questão
+                    </button>
+                )}
             </div>
 
             {/* Area de Filtros */}
@@ -202,6 +262,96 @@ export default function Questoes() {
                     <button className="btn btn-outline" style={{width: '100%', padding: '16px', fontSize: '15px'}} onClick={carregarMais}>
                         Carregar Mais Questões
                     </button>
+                </div>
+            )}
+
+            {/* Modal Admin: Criar Questão */}
+            {modalAberto && (
+                <div className="modal-overlay" onClick={() => setModalAberto(false)}>
+                    <div className="modal-content" onClick={e => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h2>Cadastrar Questão</h2>
+                            <button className="modal-close" onClick={() => setModalAberto(false)}>
+                                <X size={20} />
+                            </button>
+                        </div>
+
+                        <div className="modal-body">
+                            <label className="modal-label">
+                                Enunciado
+                                <textarea
+                                    rows={4}
+                                    className="modal-input"
+                                    placeholder="Digite o enunciado da questão..."
+                                    value={novaQuestao.texto}
+                                    onChange={e => setNovaQuestao({ ...novaQuestao, texto: e.target.value })}
+                                />
+                            </label>
+
+                            <div className="modal-row">
+                                <label className="modal-label">
+                                    Matéria
+                                    <select
+                                        className="modal-input"
+                                        value={novaQuestao.materia}
+                                        onChange={e => setNovaQuestao({ ...novaQuestao, materia: e.target.value })}
+                                    >
+                                        <option value="Matemática">Matemática</option>
+                                        <option value="Linguagens">Linguagens</option>
+                                        <option value="Natureza">Natureza</option>
+                                        <option value="Humanas">Humanas</option>
+                                        <option value="Redação">Redação</option>
+                                    </select>
+                                </label>
+                                <label className="modal-label">
+                                    Tópico (opcional)
+                                    <input
+                                        type="text"
+                                        className="modal-input"
+                                        placeholder="Ex: Logaritmos"
+                                        value={novaQuestao.topico}
+                                        onChange={e => setNovaQuestao({ ...novaQuestao, topico: e.target.value })}
+                                    />
+                                </label>
+                            </div>
+
+                            <p className="modal-section-title">Alternativas</p>
+                            {novaQuestao.opcoes.map((opcao, i) => (
+                                <div key={opcao.identificador} className="modal-opcao-row">
+                                    <span className={`modal-letra ${novaQuestao.opcaoCorreta === opcao.identificador ? 'letra-correta' : ''}`}>
+                                        {opcao.identificador}
+                                    </span>
+                                    <input
+                                        type="text"
+                                        className="modal-input"
+                                        placeholder={`Texto da alternativa ${opcao.identificador}`}
+                                        value={opcao.texto}
+                                        onChange={e => handleOpcaoChange(i, e.target.value)}
+                                    />
+                                </div>
+                            ))}
+
+                            <label className="modal-label">
+                                Resposta correta
+                                <select
+                                    className="modal-input"
+                                    value={novaQuestao.opcaoCorreta}
+                                    onChange={e => setNovaQuestao({ ...novaQuestao, opcaoCorreta: e.target.value })}
+                                >
+                                    {['A', 'B', 'C', 'D', 'E'].map(l => (
+                                        <option key={l} value={l}>{l}</option>
+                                    ))}
+                                </select>
+                            </label>
+                        </div>
+
+                        <div className="modal-footer">
+                            <button className="btn btn-outline" onClick={() => setModalAberto(false)}>Cancelar</button>
+                            <button className="btn btn-primary" onClick={handleCriarQuestao} disabled={salvando}>
+                                {salvando ? 'Salvando...' : 'Cadastrar Questão'}
+                            </button>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>

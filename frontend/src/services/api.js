@@ -100,6 +100,10 @@ export const uploadService = {
 // Rotas focadas em Questões Individuais
 export const questaoService = {
     obterQuestoes: () => apiFetch('/questoes', { method: 'GET' }),
+    criarQuestao: (dados) => apiFetch('/questoes', {
+        method: 'POST',
+        body: JSON.stringify(dados)
+    }),
     responderQuestao: (id, respostaUsuario) => apiFetch(`/questoes/${id}/responder`, {
         method: 'POST',
         body: JSON.stringify({ resposta: respostaUsuario })

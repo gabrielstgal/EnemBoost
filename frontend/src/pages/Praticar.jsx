@@ -1,29 +1,81 @@
-import { useState, useEffect } from 'react';
-import { Calculator, BookOpen, Flask, ListNumbers, Clock } from '@phosphor-icons/react';
+import { useState, useEffect, useRef } from 'react';
+import { Calculator, BookOpen, Flask, ListNumbers, Clock, Plus, X, UploadSimple, File } from '@phosphor-icons/react';
 import { Link, useNavigate } from 'react-router-dom';
-import { exameService } from '../services/api';
+import { exameService, uploadService } from '../services/api';
+import { useAuth } from '../context/AuthContext';
 import './Praticar.css';
 
 export default function Praticar() {
+    const { usuario } = useAuth();
+    const isAdmin = usuario?.papel === 'admin';
+
     const [exames, setExames] = useState([]);
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const carregarExames = async () => {
-            try {
-                const res = await exameService.obterExames();
-                setExames(res.dados || []);
-            } catch (err) {
-                setErro('Não foi possível carregar os simulados no momento.');
-            } finally {
-                setCarregando(false);
-            }
-        };
+    // Modal admin
+    const [modalAberto, setModalAberto] = useState(false);
+    const [salvando, setSalvando] = useState(false);
+    const [titulo, setTitulo] = useState('');
+    const [descricao, setDescricao] = useState('');
+    const [arquivoPdf, setArquivoPdf] = useState(null);
+    const fileInputRef = useRef(null);
 
+    const carregarExames = async () => {
+        try {
+            const res = await exameService.obterExames();
+            setExames(res.dados || []);
+        } catch (err) {
+            setErro('Não foi possível carregar os simulados no momento.');
+        } finally {
+            setCarregando(false);
+        }
+    };
+
+    useEffect(() => {
         carregarExames();
     }, []);
+
+    const handleFileDrop = (e) => {
+        e.preventDefault();
+        const file = e.dataTransfer?.files[0] || e.target.files[0];
+        if (file && file.type === 'application/pdf') {
+            setArquivoPdf(file);
+        } else if (file) {
+            alert('Apenas arquivos PDF são permitidos.');
+        }
+    };
+
+    const handleCriarSimulado = async () => {
+        if (!titulo.trim()) return alert('Preencha o título do simulado.');
+
+        setSalvando(true);
+        try {
+            let pdfUrl = null;
+            if (arquivoPdf) {
+                const uploadRes = await uploadService.enviarPdf(arquivoPdf);
+                pdfUrl = uploadRes.caminhoArquivo;
+            }
+
+            await exameService.criarExame({
+                titulo,
+                descricao,
+                questoes: [],
+                ...(pdfUrl && { pdfArquivo: pdfUrl })
+            });
+
+            setModalAberto(false);
+            setTitulo('');
+            setDescricao('');
+            setArquivoPdf(null);
+            carregarExames();
+        } catch (err) {
+            alert('Erro ao criar simulado: ' + err.message);
+        } finally {
+            setSalvando(false);
+        }
+    };
 
     const examesDestaque = exames.length > 0 ? exames[0] : null;
     const examesLista = exames.length > 1 ? exames.slice(1) : exames;
@@ -34,9 +86,16 @@ export default function Praticar() {
 
     return (
         <div className="container" style={{ maxWidth: '1000px', padding: 0 }}>
-            <div className="page-header">
-                <h1>Pratique com Simulados</h1>
-                <p>Preparamos para o ENEM com questões reais de edições anteriores e monitoramento do tempo.</p>
+            <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <div>
+                    <h1>Pratique com Simulados</h1>
+                    <p>Preparamos para o ENEM com questões reais de edições anteriores e monitoramento do tempo.</p>
+                </div>
+                {isAdmin && (
+                    <button className="btn btn-primary" onClick={() => setModalAberto(true)}>
+                        <Plus weight="bold" /> Novo Simulado
+                    </button>
+                )}
             </div>
 
             {/* Filters */}
@@ -118,6 +177,80 @@ export default function Praticar() {
                 </div>
             </div>
 
+            {/* Modal Admin: Criar Simulado */}
+            {modalAberto && (
+                <div className="modal-overlay" onClick={() => setModalAberto(false)}>
+                    <div className="modal-content" onClick={e => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h2>Novo Simulado</h2>
+                            <button className="modal-close" onClick={() => setModalAberto(false)}>
+                                <X size={20} />
+                            </button>
+                        </div>
+
+                        <div className="modal-body">
+                            <label className="modal-label">
+                                Título
+                                <input
+                                    type="text"
+                                    className="modal-input"
+                                    placeholder="Ex: Simulado ENEM 2024 - Dia 1"
+                                    value={titulo}
+                                    onChange={e => setTitulo(e.target.value)}
+                                />
+                            </label>
+
+                            <label className="modal-label">
+                                Descrição
+                                <textarea
+                                    rows={3}
+                                    className="modal-input"
+                                    placeholder="Breve descrição do simulado..."
+                                    value={descricao}
+                                    onChange={e => setDescricao(e.target.value)}
+                                />
+                            </label>
+
+                            <p className="modal-section-title">Anexar PDF (opcional)</p>
+                            <div
+                                className={`upload-dropzone ${arquivoPdf ? 'has-file' : ''}`}
+                                onDrop={handleFileDrop}
+                                onDragOver={e => e.preventDefault()}
+                                onClick={() => fileInputRef.current?.click()}
+                            >
+                                <input
+                                    ref={fileInputRef}
+                                    type="file"
+                                    accept=".pdf"
+                                    style={{ display: 'none' }}
+                                    onChange={handleFileDrop}
+                                />
+                                {arquivoPdf ? (
+                                    <div className="upload-file-info">
+                                        <File size={24} />
+                                        <span>{arquivoPdf.name}</span>
+                                        <button className="upload-remove" onClick={e => { e.stopPropagation(); setArquivoPdf(null); }}>
+                                            <X size={16} />
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div className="upload-placeholder">
+                                        <UploadSimple size={32} />
+                                        <p>Arraste um PDF ou clique para selecionar</p>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="modal-footer">
+                            <button className="btn btn-outline" onClick={() => setModalAberto(false)}>Cancelar</button>
+                            <button className="btn btn-primary" onClick={handleCriarSimulado} disabled={salvando}>
+                                {salvando ? 'Salvando...' : 'Criar Simulado'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

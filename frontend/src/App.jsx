@@ -22,6 +22,17 @@ function PrivateRoute() {
   return usuario ? <Outlet /> : <Navigate to="/login" replace />;
 }
 
+// Componente para proteger rotas de admin
+function AdminRoute() {
+  const { usuario } = useAuth();
+
+  if (usuario?.papel !== 'admin') {
+    return <Navigate to="/dashboard" replace />;
+  }
+
+  return <Outlet />;
+}
+
 function App() {
   return (
     <AuthProvider>
@@ -39,6 +50,10 @@ function App() {
             <Route path="/trilhas" element={<Trilhas />} />
             <Route path="/redacao" element={<Redacao />} />
             <Route path="/desempenho" element={<Desempenho />} />
+
+            <Route element={<AdminRoute />}>
+              <Route path="/admin" element={<Admin />} />
+            </Route>
           </Route>
         </Route>
       </Routes>
