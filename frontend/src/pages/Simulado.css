@@ -1,0 +1,293 @@
+/* Simulado CSS */
+.simulado-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 0 80px;
+}
+
+/* Intro Flow */
+.simulado-intro {
+    animation: fadeIn 0.4s ease-out;
+}
+.btn-back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-size: 14px;
+}
+.intro-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    text-align: center;
+}
+.intro-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: var(--surface-alt);
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 99px;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+}
+.intro-card h1 {
+    font-size: 28px;
+    color: var(--text-main);
+    margin-bottom: 16px;
+}
+.intro-card p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.intro-meta {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+}
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+}
+.meta-item svg {
+    font-size: 32px;
+    color: var(--primary);
+}
+.meta-item strong {
+    display: block;
+    font-size: 18px;
+    color: var(--text-main);
+}
+.meta-item span {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+.intro-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+.btn-large {
+    padding: 14px 28px;
+    font-size: 15px;
+}
+
+/* Prova Flow */
+.simulado-prova {
+    animation: fadeIn 0.3s ease-out;
+}
+.prova-header {
+    background: white;
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+}
+.prova-progress-text {
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 12px;
+}
+.prova-progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: var(--surface-alt);
+    border-radius: 99px;
+    overflow: hidden;
+}
+.prova-progress-fill {
+    height: 100%;
+    background-color: var(--primary);
+    border-radius: 99px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.questao-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    padding: 40px;
+    margin-bottom: 24px;
+}
+.questao-meta {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+.badge-matter {
+    background-color: var(--primary);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.badge-topic {
+    background-color: var(--surface-alt);
+    color: var(--text-muted);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.questao-texto {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-main);
+    margin-bottom: 40px;
+}
+
+.opcoes-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.opcao-btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding: 16px;
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.opcao-btn:hover {
+    border-color: var(--primary);
+    background-color: #F8FAFC;
+}
+.opcao-btn.selecionada {
+    border-color: var(--primary);
+    background-color: #EEF2FF;
+}
+.opcao-letra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: var(--surface-alt);
+    color: var(--text-muted);
+    border-radius: 50%;
+    font-weight: 700;
+    transition: all 0.2s;
+}
+.opcao-btn.selecionada .opcao-letra {
+    background-color: var(--primary);
+    color: white;
+}
+.opcao-texto {
+    font-size: 15px;
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+.prova-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn-success {
+    background-color: #10B981;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: filter 0.2s;
+}
+.btn-success:hover { filter: brightness(1.1); }
+.btn-success:disabled {
+    background-color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+/* Resultado Flow */
+.simulado-resultado {
+    animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.resultado-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 60px 40px;
+    text-align: center;
+}
+.resultado-icone {
+    font-size: 72px;
+    color: #10B981;
+    margin-bottom: 24px;
+}
+.resultado-card h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+.resultado-card p {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 40px;
+}
+.resultado-score {
+    display: inline-block;
+    padding: 32px 64px;
+    background-color: #F8FAFC;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: 40px;
+}
+.score-valor {
+    font-size: 64px;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+.score-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.resultado-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+.rs-item strong {
+    display: block;
+    font-size: 24px;
+    color: var(--text-main);
+}
+.rs-item span {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}

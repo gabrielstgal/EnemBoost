@@ -21,6 +21,26 @@ export const obterExames = async (req, res) => {
 };
 
 
+export const obterExame = async (req, res) => {
+    try {
+        const exame = await Exame.findById(req.params.id).populate({
+            path: 'questoes',
+            select: '-opcaoCorreta' // Exclui a resposta enviada pro front para não ter cola
+        });
+
+        if (!exame) {
+            return res.status(404).json({ sucesso: false, mensagem: `Simulado não encontrado com o id ${req.params.id}` });
+        }
+
+        res.status(200).json({
+            sucesso: true,
+            dados: exame,
+        });
+    } catch (erro) {
+        res.status(500).json({ sucesso: false, mensagem: erro.message });
+    }
+};
+
 export const criarExame = async (req, res) => {
     try {
         req.body.usuario = req.usuario.id;
@@ -87,4 +107,25 @@ export const enviarTentativa = async (req, res) => {
         res.status(500).json({ sucesso: false, mensagem: erro.message });
     }
 };
+
+export const obterMinhasTentativas = async (req, res) => {
+    try {
+        const tentativas = await Tentativa.find({ usuario: req.usuario.id })
+            .populate({
+                path: 'exame',
+                select: 'titulo descricao' // Traz só o nome do exame e descrição
+            })
+            .sort('-criadoEm'); 
+
+        res.status(200).json({
+            sucesso: true,
+            contagem: tentativas.length,
+            dados: tentativas,
+        });
+    } catch (erro) {
+        res.status(500).json({ sucesso: false, mensagem: erro.message });
+    }
+};
+
+// duplicate function removed
 

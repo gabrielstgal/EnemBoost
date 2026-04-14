@@ -1,6 +1,8 @@
 import express from 'express';
 import {
     obterExames,
+    obterExame,
+    obterMinhasTentativas,
     criarExame,
     enviarTentativa
 } from '../controllers/exameController.js';
@@ -13,6 +15,14 @@ router
     .route('/')
     .get(obterExames)
     .post(proteger, autorizar('admin'), criarExame);
+
+router
+    .route('/tentativas/minhas')
+    .get(proteger, obterMinhasTentativas);
+
+router
+    .route('/:id')
+    .get(obterExame);
 
 router
     .route('/:id/tentativas')

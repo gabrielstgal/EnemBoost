@@ -10,7 +10,7 @@ export const obterQuestoes = async (req, res) => {
         if (req.query.materia) match.materia = req.query.materia;
         if (req.query.topico) match.topico = req.query.topico;
 
-        query = Questao.find(match);
+        query = Questao.find(match).select('-opcaoCorreta');
 
         const questoes = await query;
 

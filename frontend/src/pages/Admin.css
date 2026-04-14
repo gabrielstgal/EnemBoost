@@ -1,0 +1,141 @@
+.highlight-admin h1 {
+    color: var(--color-human);
+}
+
+.admin-box {
+    background: white;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    padding: 32px;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.02);
+}
+
+.admin-box-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.admin-box-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.admin-box-header svg {
+    color: var(--primary);
+}
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.upload-segment label {
+    margin-bottom: 12px;
+    display: block;
+}
+
+.upload-dropzone {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-md);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    background-color: #FAFAFA;
+    transition: all 0.2s ease;
+}
+
+.upload-dropzone:hover {
+    border-color: var(--primary);
+    background-color: #F8FAFC;
+}
+
+.upload-dropzone.has-file {
+    border-color: #10B981;
+    border-style: solid;
+    background-color: #ECFDF5;
+}
+
+.upload-title {
+    margin-top: 16px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.upload-sub {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.file-info {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.file-name {
+    font-weight: 700;
+    color: var(--text-main);
+    word-break: break-all;
+}
+
+.file-size {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.change-file-btn {
+    margin-top: 16px;
+    font-size: 14px;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.admin-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.btn-loading {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.status-badge {
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.status-badge svg {
+    font-size: 20px;
+}
+
+.success-badge {
+    background-color: #ECFDF5;
+    color: #10B981;
+}
+
+.error-badge {
+    background-color: #FEF2F2;
+    color: #EF4444;
+}

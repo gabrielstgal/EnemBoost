@@ -1,0 +1,141 @@
+.welcome-banner {
+    background: linear-gradient(to right, var(--text-main), #1E293B);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-banner::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(37,99,235,0.2)"/></svg>') no-repeat center right;
+    background-size: cover;
+    pointer-events: none;
+}
+
+.welcome-text h1 {
+    font-size: 32px;
+    color: white;
+    margin-bottom: 8px;
+}
+.welcome-text p {
+    color: #94A3B8;
+    font-size: 16px;
+}
+
+.quick-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.resume-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.resume-icon {
+    width: 80px;
+    height: 80px;
+    background: #EFF6FF;
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+.resume-info h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.resume-info p {
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.mini-chart {
+    background: white;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    padding: 24px;
+}
+
+.mini-chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.mini-chart-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.bars-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 120px;
+    gap: 8px;
+}
+
+.bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.bar-pill {
+    width: 100%;
+    max-width: 24px;
+    background-color: #E2E8F0;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.bar-pill.active {
+    background-color: var(--primary);
+}
+
+.bar-col span {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.recommendations {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}

@@ -15,10 +15,10 @@ import conteudoRoutes from './src/routes/conteudoRoutes.js';
 import questaoRoutes from './src/routes/questaoRoutes.js';
 import exameRoutes from './src/routes/exameRoutes.js';
 import painelRoutes from './src/routes/painelRoutes.js';
-
+import uploadRoutes from './src/routes/uploadRoutes.js';
+import path from 'path';
 
 dotenv.config();
-
 
 connectDB();
 
@@ -33,11 +33,15 @@ app.use(cors({
 }));
 
 
+const __dirname = path.resolve();
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 app.use('/api', autenticacaoRoutes);
 app.use('/api/conteudos', conteudoRoutes);
 app.use('/api/questoes', questaoRoutes);
 app.use('/api/exames', exameRoutes);
 app.use('/api/painel', painelRoutes);
+app.use('/api/upload', uploadRoutes);
 
 
 app.get('/api/health', (req, res) => {

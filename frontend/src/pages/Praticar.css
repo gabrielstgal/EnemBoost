@@ -1,0 +1,196 @@
+/* Praticar CSS */
+.page-header {
+    margin-bottom: 32px;
+}
+.page-header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: var(--text-main);
+}
+.page-header p {
+    color: var(--text-muted);
+    font-size: 16px;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+.filter-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 99px;
+    background-color: white;
+    border: 1px solid var(--border);
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+.filter-chip:hover {
+    background-color: var(--surface-alt);
+    color: var(--text-main);
+}
+.filter-chip.active {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+.dot-math { background-color: var(--color-math); }
+.dot-lang { background-color: var(--color-lang); }
+.dot-nature { background-color: var(--color-nature); }
+.dot-human { background-color: var(--color-human); }
+
+/* Featured Exam */
+.featured-exam {
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    color: white;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+.featured-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+}
+.featured-label {
+    display: inline-block;
+    background-color: rgba(255,255,255,0.2);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.featured-exam h2 {
+    font-size: 32px;
+    color: white;
+    margin-bottom: 16px;
+}
+.featured-exam p {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+.featured-stats {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    background-color: rgba(0,0,0,0.15);
+    padding: 16px 24px;
+    border-radius: var(--radius-lg);
+    flex-wrap: wrap;
+}
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.stat-item span:first-child {
+    font-size: 12px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    font-weight: 600;
+}
+.stat-item span:last-child {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+/* Exams Grid */
+.exams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+.icon-math { background-color: #DBEAFE; color: #2563EB; }
+.icon-lang { background-color: #FEF3C7; color: #D97706; }
+.icon-nature { background-color: #D1FAE5; color: #059669; }
+
+.exam-meta {
+    display: flex;
+    gap: 16px;
+    margin: 16px 0;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+}
+.exam-meta div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Progress Banner */
+.progress-banner {
+    background-color: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.progress-banner-text {
+    max-width: 500px;
+}
+.progress-banner-text h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+.progress-banner-text p {
+    color: var(--text-muted);
+}
+.progress-banner-stats {
+    display: flex;
+    gap: 32px;
+}
+.pb-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.pb-stat strong {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--primary);
+}
+.pb-stat span {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .progress-banner {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+    }
+    .featured-stats {
+        gap: 16px;
+    }
+}

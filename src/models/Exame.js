@@ -20,6 +20,10 @@ const exameSchema = new mongoose.Schema(
             ref: 'Usuario',
             required: true,
         },
+        pdfArquivo: {
+            type: String, // URL local, ex: /uploads/enem-2023.pdf
+            default: null
+        }
     },
     {
         timestamps: true,
