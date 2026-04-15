@@ -64,9 +64,13 @@ export const painelService = {
 export const conteudoService = {
     obterConteudos: (materia = '') => {
         const query = materia ? `?materia=${materia}` : '';
-        return apiFetch(`/conteudo${query}`, { method: 'GET' });
+        return apiFetch(`/conteudos${query}`, { method: 'GET' });
     },
-    obterConteudoPorId: (id) => apiFetch(`/conteudo/${id}`, { method: 'GET' })
+    obterConteudoPorId: (id) => apiFetch(`/conteudos/${id}`, { method: 'GET' }),
+    criarConteudo: (dados) => apiFetch('/conteudos', {
+        method: 'POST',
+        body: JSON.stringify(dados)
+    })
 };
 
 // Rotas focadas em Exames/Simulados

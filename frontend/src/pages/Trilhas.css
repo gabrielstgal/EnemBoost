@@ -1,42 +1,30 @@
 /* Trilhas CSS */
-.stats-row {
-    display: flex;
-    gap: 24px;
-    margin-bottom: 40px;
-    flex-wrap: wrap;
-}
-.stats-row > .stat-card {
-    flex: 1;
-    min-width: 250px;
-}
-.stat-sub {
-    font-size: 13px;
-    font-weight: 500;
-    margin-left: 12px;
-}
-.text-red {
-    color: #EF4444;
-}
 
-/* Trails Grid */
+/* Trails Grid - Cards de matéria */
 .trails-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 24px;
-    margin-bottom: 48px;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
 }
+
 .trail-card {
     background-color: white;
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 24px;
+    padding: 20px;
     position: relative;
     overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    text-align: center;
 }
 .trail-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
+}
+.trail-card.trail-active {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
 }
 
 .trail-card::before {
@@ -51,114 +39,213 @@
 .tc-lang::before { background-color: var(--color-lang); }
 .tc-nature::before { background-color: var(--color-nature); }
 .tc-human::before { background-color: var(--color-human); }
-.tc-essay::before { background-color: var(--color-essay); }
+.tc-essay::before { background-color: #EF4444; }
 
-.trail-header {
-    margin-bottom: 24px;
-}
-.trail-title {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-.trail-badge {
-    display: inline-block;
-    padding: 4px 8px;
-    background-color: var(--surface-alt);
-    border-radius: 4px;
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--text-muted);
-}
-
-.trail-progress-info {
+.trail-icon-wrapper {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+}
+
+.tc-math .trail-icon-wrapper { background-color: #DBEAFE; color: var(--color-math); }
+.tc-lang .trail-icon-wrapper { background-color: #FEF3C7; color: var(--color-lang); }
+.tc-nature .trail-icon-wrapper { background-color: #EDE9FE; color: var(--color-nature); }
+.tc-human .trail-icon-wrapper { background-color: #D1FAE5; color: var(--color-human); }
+.tc-essay .trail-icon-wrapper { background-color: #FEE2E2; color: #EF4444; }
+
+.trail-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.trail-count {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Filtros - reutiliza padrão da página Questões */
+.q-filters-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+.q-filters-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+.q-filters-list {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.q-filter-btn {
+    padding: 8px 16px;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+    background: white;
     font-size: 13px;
     font-weight: 600;
     color: var(--text-muted);
-    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
 }
-.trail-progress-bar {
-    width: 100%;
-    height: 6px;
-    background-color: var(--surface-alt);
-    border-radius: 99px;
-    margin-bottom: 24px;
-    overflow: hidden;
+.q-filter-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
 }
-.trail-progress-fill {
-    height: 100%;
+.q-filter-btn.active {
     background-color: var(--primary);
-    border-radius: 99px;
-    transition: width 0.5s ease;
+    border-color: var(--primary);
+    color: white;
 }
 
-.tc-math .trail-progress-fill { background-color: var(--color-math); }
-.tc-lang .trail-progress-fill { background-color: var(--color-lang); }
-.tc-nature .trail-progress-fill { background-color: var(--color-nature); }
-.tc-human .trail-progress-fill { background-color: var(--color-human); }
-.tc-essay .trail-progress-fill { background-color: var(--color-essay); }
-
-.trail-card .btn {
-    width: 100%;
-    background-color: var(--surface-alt);
-    color: var(--text-main);
-}
-.trail-card .btn:hover {
-    background-color: var(--border);
+/* Empty State */
+.trilhas-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 48px 24px;
+    color: var(--text-muted);
+    text-align: center;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: 40px;
 }
 
 /* Steps List */
 .steps-list {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     margin-bottom: 40px;
 }
+
+.step-item-wrapper {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background-color: white;
+    transition: box-shadow 0.2s;
+}
+.step-item-wrapper:hover {
+    box-shadow: var(--shadow-sm);
+}
+
 .step-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: white;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    transition: box-shadow 0.2s;
+    transition: background-color 0.2s;
 }
 .step-item:hover {
-    box-shadow: var(--shadow-sm);
+    background-color: var(--surface-alt);
+}
+.step-item.step-aberto {
+    border-bottom: 1px solid var(--border);
 }
 
 .step-info {
     display: flex;
     align-items: center;
     gap: 16px;
+    flex: 1;
+    min-width: 0;
 }
 .step-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+    font-size: 22px;
+    flex-shrink: 0;
 }
+.si-math { background-color: #DBEAFE; color: #2563EB; }
+.si-lang { background-color: #FEF3C7; color: #D97706; }
+.si-nature { background-color: #EDE9FE; color: #8B5CF6; }
+.si-human { background-color: #D1FAE5; color: #059669; }
+.si-essay { background-color: #FEE2E2; color: #EF4444; }
 .si-blue { background-color: #DBEAFE; color: #2563EB; }
-.si-green { background-color: #D1FAE5; color: #059669; }
-.si-yellow { background-color: #FEF3C7; color: #D97706; }
 
+.step-text {
+    flex: 1;
+    min-width: 0;
+}
 .step-text h4 {
-    font-size: 16px;
+    font-size: 15px;
     margin-bottom: 4px;
 }
 .step-text p {
     font-size: 13px;
     color: var(--text-muted);
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.step-materia-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+.step-materia-badge.tc-math { background-color: #DBEAFE; color: var(--color-math); }
+.step-materia-badge.tc-lang { background-color: #FEF3C7; color: var(--color-lang); }
+.step-materia-badge.tc-nature { background-color: #EDE9FE; color: var(--color-nature); }
+.step-materia-badge.tc-human { background-color: #D1FAE5; color: var(--color-human); }
+.step-materia-badge.tc-essay { background-color: #FEE2E2; color: #EF4444; }
+
+/* Corpo expandido */
+.step-corpo {
+    padding: 24px;
+    background-color: var(--surface-alt);
+}
+.step-corpo-content {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-main);
+    max-width: 720px;
+}
+.step-corpo-content p {
+    margin-bottom: 12px;
+}
+.step-corpo-content h1,
+.step-corpo-content h2,
+.step-corpo-content h3 {
+    margin-bottom: 8px;
+    margin-top: 16px;
+}
+.step-corpo-content ul,
+.step-corpo-content ol {
+    padding-left: 24px;
+    margin-bottom: 12px;
 }
 
 @media (max-width: 600px) {
+    .trails-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
     .step-item {
         flex-direction: column;
         align-items: flex-start;
