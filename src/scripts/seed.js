@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Carregar variáveis de ambiente do .env na raiz (projetoEnem)
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.join(__dirname, '..', '..', '.env') });
@@ -24,12 +24,12 @@ const seedData = async () => {
     try {
         console.log('Iniciando o apagão e reconstrução do Banco de Dados (Mock Data)...');
 
-        // Limpar banco
+        
         await Conteudo.deleteMany();
         await Questao.deleteMany();
         await Exame.deleteMany();
 
-        // Pegar o primeiro usuário existente para atrelar autoria (geralmente deve ser um admin)
+        
         const usuarioExistente = await Usuario.findOne();
         if (!usuarioExistente) {
             console.error('Nenhum usuário encontrado! Crie uma conta no site primeiro para executar o Seed.');
@@ -39,7 +39,7 @@ const seedData = async () => {
 
         console.log(`Usando o usuário ${usuarioExistente.email} como autor.`);
 
-        // 1. INJETAR CONTEÚDOS (Trilhas)
+        
         const conteudosInjetados = await Conteudo.insertMany([
             {
                 titulo: 'Matemática Básica: Frações e Porcentagem',
@@ -86,8 +86,8 @@ const seedData = async () => {
         ]);
         console.log(`✅ ${conteudosInjetados.length} Conteúdos criados.`);
 
-        // 2. INJETAR QUESTÕES 
-        // Questões reais para teste
+        
+        
         const novasQuestoes = [
             {
                 texto: "A Lei de Lavoisier afirma que na natureza, nada se cria, nada se perde, tudo se transforma. Qual princípio essa lei está diretamente descrevendo?",
@@ -358,13 +358,13 @@ const seedData = async () => {
         ]);
         console.log(`✅ ${questoesInjetadas.length} Questões criadas.`);
 
-        // 3. INJETAR SIMULADO E VINCULAR AS QUESTÕES
+        
         const idQuestoes = questoesInjetadas.map(q => q._id);
 
         await Exame.create({
             titulo: 'Simulado Diagnóstico Nacional',
             descricao: 'Um simulado rápido para testar seus conhecimentos nas principais áreas estratégicas do ENEM.',
-            questoes: [idQuestoes[0], idQuestoes[1], idQuestoes[2]], // Usa as 3 questões mockadas
+            questoes: [idQuestoes[0], idQuestoes[1], idQuestoes[2]], 
             usuario: adminId
         });
 

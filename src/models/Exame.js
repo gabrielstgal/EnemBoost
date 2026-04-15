@@ -21,7 +21,7 @@ const exameSchema = new mongoose.Schema(
             required: true,
         },
         pdfArquivo: {
-            type: String, // URL local, ex: /uploads/enem-2023.pdf
+            type: String, 
             default: null
         }
     },

@@ -14,7 +14,7 @@ export default function Praticar() {
     const [erro, setErro] = useState(null);
     const navigate = useNavigate();
 
-    // Modal admin
+    
     const [modalAberto, setModalAberto] = useState(false);
     const [salvando, setSalvando] = useState(false);
     const [titulo, setTitulo] = useState('');
@@ -98,7 +98,7 @@ export default function Praticar() {
                 )}
             </div>
 
-            {/* Filters */}
+            {}
             <div className="filters">
                 <button className="filter-chip active">Todos os Simulados</button>
             </div>
@@ -106,7 +106,7 @@ export default function Praticar() {
             {carregando && <div style={{ color: 'var(--primary)', fontWeight: 'bold', marginBottom: '24px' }}>Carregando exames do banco de dados...</div>}
             {erro && <div style={{ color: 'red', marginBottom: '24px' }}>{erro}</div>}
 
-            {/* Featured Exam */}
+            {}
             {examesDestaque && (
                 <div className="featured-exam">
                     <div className="featured-content">
@@ -136,7 +136,7 @@ export default function Praticar() {
                 </div>
             )}
 
-            {/* Area Exams */}
+            {}
             {examesLista.length > 0 && (
                 <>
                     <div className="card-section">
@@ -169,7 +169,7 @@ export default function Praticar() {
                 <p style={{ color: 'var(--text-muted)' }}>Nenhum simulado disponível ainda.</p>
             )}
 
-            {/* Progress Banner */}
+            {}
             <div className="progress-banner" style={{ marginTop: '40px' }}>
                 <div className="progress-banner-text">
                     <h2>Seu progresso é a nossa meta.</h2>
@@ -177,7 +177,7 @@ export default function Praticar() {
                 </div>
             </div>
 
-            {/* Modal Admin: Criar Simulado */}
+            {}
             {modalAberto && (
                 <div className="modal-overlay" onClick={() => setModalAberto(false)}>
                     <div className="modal-content" onClick={e => e.stopPropagation()}>

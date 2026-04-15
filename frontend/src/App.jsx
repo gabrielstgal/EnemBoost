@@ -13,7 +13,7 @@ import Desempenho from './pages/Desempenho';
 import Admin from './pages/Admin';
 import Layout from './components/Layout';
 
-// Componente para proteger rotas privadas
+
 function PrivateRoute() {
   const { usuario, carregando } = useAuth();
 
@@ -22,7 +22,7 @@ function PrivateRoute() {
   return usuario ? <Outlet /> : <Navigate to="/login" replace />;
 }
 
-// Componente para proteger rotas de admin
+
 function AdminRoute() {
   const { usuario } = useAuth();
 

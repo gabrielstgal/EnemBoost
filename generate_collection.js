@@ -2,12 +2,12 @@ import fs from 'fs';
 
 const collection = JSON.parse(fs.readFileSync('EnemBoost.postman_collection.json', 'utf8'));
 
-// Find folders
+
 const conteudosFolder = collection.item.find(i => i.name === '2. Conteúdos');
 const questoesFolder = collection.item.find(i => i.name === '3. Questões');
 const simuladosFolder = collection.item.find(i => i.name === '4. Simulados');
 
-// --- Conteúdos ---
+
 conteudosFolder.item.push({
     name: "Obter Conteúdo por ID",
     request: { method: "GET", header: [], url: { raw: "http://localhost:5000/api/conteudos/:id", protocol: "http", host: ["localhost"], port: "5000", path: ["api", "conteudos", ":id"], variable: [{ key: "id", value: "ID_AQUI" }] } }
@@ -19,7 +19,7 @@ conteudosFolder.item.push({
     request: { method: "DELETE", header: [{ key: "Authorization", value: "Bearer {{token}}" }], url: { raw: "http://localhost:5000/api/conteudos/:id", protocol: "http", host: ["localhost"], port: "5000", path: ["api", "conteudos", ":id"], variable: [{ key: "id", value: "ID_AQUI" }] } }
 });
 
-// --- Questões ---
+
 questoesFolder.item.push({
     name: "Obter Questão por ID",
     request: { method: "GET", header: [], url: { raw: "http://localhost:5000/api/questoes/:id", protocol: "http", host: ["localhost"], port: "5000", path: ["api", "questoes", ":id"], variable: [{ key: "id", value: "ID_AQUI" }] } }
@@ -31,7 +31,7 @@ questoesFolder.item.push({
     request: { method: "DELETE", header: [{ key: "Authorization", value: "Bearer {{token}}" }], url: { raw: "http://localhost:5000/api/questoes/:id", protocol: "http", host: ["localhost"], port: "5000", path: ["api", "questoes", ":id"], variable: [{ key: "id", value: "ID_AQUI" }] } }
 });
 
-// --- Simulados ---
+
 simuladosFolder.item.push({
     name: "Obter Simulado por ID",
     request: { method: "GET", header: [], url: { raw: "http://localhost:5000/api/exames/:id", protocol: "http", host: ["localhost"], port: "5000", path: ["api", "exames", ":id"], variable: [{ key: "id", value: "ID_AQUI" }] } }

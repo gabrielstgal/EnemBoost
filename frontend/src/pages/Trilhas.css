@@ -1,6 +1,6 @@
-/* Trilhas CSS */
 
-/* Trails Grid - Cards de matéria */
+
+
 .trails-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
@@ -68,7 +68,7 @@
     font-weight: 500;
 }
 
-/* Filtros - reutiliza padrão da página Questões */
+
 .q-filters-container {
     display: flex;
     align-items: center;
@@ -111,7 +111,7 @@
     color: white;
 }
 
-/* Empty State */
+
 .trilhas-empty-state {
     display: flex;
     flex-direction: column;
@@ -126,7 +126,7 @@
     margin-bottom: 40px;
 }
 
-/* Steps List */
+
 .steps-list {
     display: flex;
     flex-direction: column;
@@ -216,7 +216,7 @@
 .step-materia-badge.tc-human { background-color: #D1FAE5; color: var(--color-human); }
 .step-materia-badge.tc-essay { background-color: #FEE2E2; color: #EF4444; }
 
-/* Corpo expandido */
+
 .step-corpo {
     padding: 24px;
     background-color: var(--surface-alt);

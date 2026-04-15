@@ -18,13 +18,13 @@ export default function Redacao() {
 
     return (
         <div className="container" style={{ maxWidth: '1000px', padding: 0 }}>
-            {/* Header */}
+            {}
             <div className="page-header">
                 <h1>Redação EnemBoost</h1>
                 <p>Pratique a escrita, anexe seus textos e receba correções detalhadas baseadas nas competências do ENEM.</p>
             </div>
 
-            {/* Tema em Destaque */}
+            {}
             <div className="redacao-theme-card">
                 <div className="theme-meta">
                     <span className="badge-outline">TEMA DA SEMANA</span>
@@ -42,7 +42,7 @@ export default function Redacao() {
                 </div>
             </div>
 
-            {/* Seção de Anexo */}
+            {}
             <div className="card-section" style={{ marginTop: '40px' }}>
                 <h2>Anexar Arquivo (Folha de Redação)</h2>
             </div>
@@ -88,7 +88,7 @@ export default function Redacao() {
                 )}
             </div>
 
-            {/* Redações Anteriores */}
+            {}
             <div className="card-section" style={{ marginTop: '40px' }}>
                 <h2>Redações Anteriores</h2>
             </div>

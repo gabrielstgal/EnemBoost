@@ -1,4 +1,4 @@
-/* Desempenho CSS */
+
 .metrics-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -73,7 +73,7 @@
     color: var(--text-muted);
 }
 
-/* History Timeline / CSS Bars */
+
 .history-section {
     background: white;
     border-radius: var(--radius-lg);

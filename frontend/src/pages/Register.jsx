@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { RocketLaunch, GoogleLogo, Student } from '@phosphor-icons/react';
 import { useAuth } from '../context/AuthContext';
-import './Login.css'; // Podemos reaproveitar o layout de login
+import './Login.css'; 
 
 export default function Register() {
     const [nome, setNome] = useState('');

@@ -21,7 +21,7 @@ export default function Trilhas() {
     const [erro, setErro] = useState(null);
     const [filtroMateria, setFiltroMateria] = useState('');
 
-    // Modal admin
+    
     const [modalAberto, setModalAberto] = useState(false);
     const [salvando, setSalvando] = useState(false);
     const [novoConteudo, setNovoConteudo] = useState({
@@ -31,7 +31,7 @@ export default function Trilhas() {
         materia: 'Matemática',
     });
 
-    // Conteúdo expandido
+    
     const [conteudoAberto, setConteudoAberto] = useState(null);
 
     const carregarTrilhas = async () => {
@@ -69,13 +69,13 @@ export default function Trilhas() {
         }
     };
 
-    // Contagem por matéria
+    
     const contagemPorMateria = {};
     conteudos.forEach(c => {
         contagemPorMateria[c.materia] = (contagemPorMateria[c.materia] || 0) + 1;
     });
 
-    // Filtrar conteúdos
+    
     const conteudosFiltrados = filtroMateria
         ? conteudos.filter(c => c.materia === filtroMateria)
         : conteudos;
@@ -96,7 +96,7 @@ export default function Trilhas() {
                 )}
             </div>
 
-            {/* Cards de Trilhas por Matéria */}
+            {}
             <div className="trails-grid">
                 {MATERIAS.map(materia => {
                     const Icon = materia.icon;
@@ -122,7 +122,7 @@ export default function Trilhas() {
                 })}
             </div>
 
-            {/* Filtros */}
+            {}
             <div className="q-filters-container">
                 <div className="q-filters-label">
                     <Funnel weight="fill" /> Filtrar:
@@ -140,11 +140,11 @@ export default function Trilhas() {
                 </div>
             </div>
 
-            {/* Estados de carregamento e erro */}
+            {}
             {carregando && <div style={{ color: 'var(--primary)', fontWeight: 'bold', marginBottom: '24px' }}>Carregando conteúdos...</div>}
             {erro && <div style={{ color: 'red', marginBottom: '24px' }}>{erro}</div>}
 
-            {/* Lista de Conteúdos */}
+            {}
             <div className="card-section">
                 <h2>
                     {filtroMateria ? `Conteúdos de ${filtroMateria}` : 'Todos os Conteúdos'}
@@ -200,7 +200,7 @@ export default function Trilhas() {
                 })}
             </div>
 
-            {/* Modal Admin: Criar Conteúdo */}
+            {}
             {modalAberto && (
                 <div className="modal-overlay" onClick={() => setModalAberto(false)}>
                     <div className="modal-content" onClick={e => e.stopPropagation()}>

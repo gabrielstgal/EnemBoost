@@ -225,7 +225,7 @@
     line-height: 1.6;
 }
 
-/* Responsive */
+
 @media (max-width: 900px) {
     .login-banner {
         display: none;

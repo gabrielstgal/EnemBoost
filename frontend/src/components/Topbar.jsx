@@ -13,7 +13,7 @@ export default function Topbar() {
     const emailUsuario = usuario?.email || '';
     const isAdmin = usuario?.papel === 'admin';
 
-    // Fechar menu ao clicar fora
+    
     useEffect(() => {
         const handleClickFora = (e) => {
             if (menuRef.current && !menuRef.current.contains(e.target)) {

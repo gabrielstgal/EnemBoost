@@ -25,7 +25,7 @@ export const obterExame = async (req, res) => {
     try {
         const exame = await Exame.findById(req.params.id).populate({
             path: 'questoes',
-            select: '-opcaoCorreta' // Exclui a resposta enviada pro front para não ter cola
+            select: '-opcaoCorreta' 
         });
 
         if (!exame) {
@@ -113,7 +113,7 @@ export const obterMinhasTentativas = async (req, res) => {
         const tentativas = await Tentativa.find({ usuario: req.usuario.id })
             .populate({
                 path: 'exame',
-                select: 'titulo descricao' // Traz só o nome do exame e descrição
+                select: 'titulo descricao' 
             })
             .sort('-criadoEm'); 
 
@@ -127,5 +127,5 @@ export const obterMinhasTentativas = async (req, res) => {
     }
 };
 
-// duplicate function removed
+
 

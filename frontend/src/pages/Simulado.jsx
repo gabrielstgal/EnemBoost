@@ -12,10 +12,10 @@ export default function Simulado() {
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState(null);
     
-    // States for exam flow
-    const [fase, setFase] = useState('intro'); // 'intro', 'prova', 'resultado'
+    
+    const [fase, setFase] = useState('intro'); 
     const [questaoAtualIdx, setQuestaoAtualIdx] = useState(0);
-    const [respostas, setRespostas] = useState({}); // { questaoId: 'A' }
+    const [respostas, setRespostas] = useState({}); 
     const [enviando, setEnviando] = useState(false);
     const [resultado, setResultado] = useState(null);
 
@@ -60,13 +60,13 @@ export default function Simulado() {
     const enviarSimulado = async () => {
         setEnviando(true);
         try {
-            // Formatar respostas no formato exigido pelo backend
+            
             const respostasArray = Object.keys(respostas).map(qId => ({
                 questao: qId,
                 opcaoSelecionada: respostas[qId]
             }));
 
-            // notaFinal não é necessária, o backend calcula sozinho de acordo com exameController
+            
             const res = await exameService.enviarTentativa(id, 0, respostasArray);
             setResultado(res.dados);
             setFase('resultado');
@@ -79,7 +79,7 @@ export default function Simulado() {
 
     const gerarPdfFake = () => {
         alert('Baixando PDF do Simulado: ' + exame.titulo);
-        // Na prática, aqui seria implementado um html2pdf ou a entrega de um arquivo estático s3
+        
     };
 
     if (carregando) return <div className="simulado-container"><h2>Carregando simulado...</h2></div>;

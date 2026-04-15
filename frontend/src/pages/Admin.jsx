@@ -8,7 +8,7 @@ export default function Admin() {
     const [descricao, setDescricao] = useState('');
     const [arquivoLocal, setArquivoLocal] = useState(null);
 
-    const [status, setStatus] = useState('idle'); // idle, uploading, sucess, error
+    const [status, setStatus] = useState('idle'); 
     const [mensagem, setMensagem] = useState('');
     const fileInputRef = useRef(null);
 
@@ -37,24 +37,24 @@ export default function Admin() {
         try {
             let pdfUrlSalva = null;
 
-            // 1. Faz upload do Arquivo primeiro
+            
             if (arquivoLocal) {
                 const resUpload = await uploadService.enviarPdf(arquivoLocal);
-                pdfUrlSalva = resUpload.caminhoArquivo; // devolve a String /uploads/...
+                pdfUrlSalva = resUpload.caminhoArquivo; 
             }
 
-            // 2. Cria o Exame atrelando a URL do PDF (se existir)
+            
             await exameService.criarExame({
                 titulo,
                 descricao,
-                questoes: [], // Array vazio pra simplificar na geracao avulsa com PDF
+                questoes: [], 
                 pdfArquivo: pdfUrlSalva
             });
 
             setStatus('success');
             setMensagem('Simulado e arquivo salvos com sucesso!');
             
-            // Limpa o form
+            
             setTitulo('');
             setDescricao('');
             setArquivoLocal(null);

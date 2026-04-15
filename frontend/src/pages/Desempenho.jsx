@@ -23,7 +23,7 @@ export default function Desempenho() {
         carregarDesempenho();
     }, []);
 
-    // Estatísticas Derivadas
+    
     const totalSimulados = tentativas.length;
     
     let mediaAcertos = 0;
@@ -61,7 +61,7 @@ export default function Desempenho() {
 
             {!carregando && !erro && (
                 <>
-                    {/* Big Cards Overview */}
+                    {}
                     <div className="metrics-grid">
                         <div className="metric-card master">
                             <div className="metric-icon" style={{ backgroundColor: 'rgba(16, 185, 129, 0.1)', color: '#10B981' }}>
@@ -97,7 +97,7 @@ export default function Desempenho() {
                         </div>
                     </div>
 
-                    {/* Histórico e Mini-Graficos HTML/CSS */}
+                    {}
                     <div className="history-section">
                         <h2>Trajetória de Evolução</h2>
                         <p className="history-sub">Acompanhe visualmente o rendimento de cada ciclo de estudos realizado.</p>
@@ -114,7 +114,7 @@ export default function Desempenho() {
                                     const examNnome = tentativa.exame?.titulo || 'Simulado Avulso';
                                     const acertosNesta = tentativa.respostas.filter(r => r.estaCorreta).length;
                                     
-                                    // Cor baseada na nota
+                                    
                                     let progressColor = 'var(--primary)';
                                     if(tentativa.pontuacao >= 80) progressColor = '#10B981';
                                     else if(tentativa.pontuacao <= 40) progressColor = '#EF4444';
@@ -136,7 +136,7 @@ export default function Desempenho() {
                                                         <span><ListNumbers weight="bold" /> {acertosNesta} de {tentativa.totalQuestoes} Acertos</span>
                                                     </div>
                                                     
-                                                    {/* Barrinha Customizada em CSS imitando Gráfico */}
+                                                    {}
                                                     <div className="tl-bar-bg">
                                                         <div 
                                                             className="tl-bar-fill" 

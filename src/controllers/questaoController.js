@@ -5,7 +5,7 @@ export const obterQuestoes = async (req, res) => {
     try {
         let query;
 
-        // se vier nos params a gnt ja filtra
+        
         const match = {};
         if (req.query.materia) match.materia = req.query.materia;
         if (req.query.topico) match.topico = req.query.topico;
@@ -91,7 +91,7 @@ export const deletarQuestao = async (req, res) => {
     }
 };
 
-// corrige a questao na hora
+
 export const resolverQuestao = async (req, res) => {
     try {
         const questao = await Questao.findById(req.params.id);

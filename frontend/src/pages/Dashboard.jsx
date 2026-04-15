@@ -29,7 +29,7 @@ export default function Dashboard() {
 
     return (
         <div className="container" style={{ maxWidth: '1000px', padding: 0 }}>
-            {/* Welcome Banner */}
+            {}
             <div className="welcome-banner">
                 <div className="welcome-text">
                     <h1>Olá, {usuario?.nome || 'Estudante'}! 👋</h1>
@@ -38,7 +38,7 @@ export default function Dashboard() {
                 <Link to="/trilhas" className="btn btn-primary" style={{ background: 'white', color: 'var(--text-main)' }}>Ir para trilhas</Link>
             </div>
 
-            {/* Quick Stats */}
+            {}
             <div className="quick-stats-grid">
                 <div className="stat-card">
                     <div className="stat-card-title">Meta Diária <Target weight="fill" style={{ color: 'var(--color-human)', fontSize: '18px' }} /></div>
@@ -64,9 +64,9 @@ export default function Dashboard() {
                 </div>
             </div>
 
-            {/* Layout 2 cols */}
+            {}
             <div className="dashboard-grid">
-                {/* Continue */}
+                {}
                 <div>
                     <div className="card-section">
                         <h2>Continue de onde parou</h2>
@@ -84,7 +84,7 @@ export default function Dashboard() {
                     </div>
                 </div>
 
-                {/* Mini Chart */}
+                {}
                 <div>
                     <div className="card-section">
                         <h2>Horas de Estudo</h2>
@@ -107,7 +107,7 @@ export default function Dashboard() {
                 </div>
             </div>
 
-            {/* Recommendations */}
+            {}
             <div className="card-section">
                 <h2>Recomendado para você</h2>
                 <Link to="#" className="view-all">Ver todas</Link>

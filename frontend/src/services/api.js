@@ -1,11 +1,11 @@
 const BASE_URL = 'http://localhost:5000/api';
 
-// Helper function to handle fetch calls
+
 async function apiFetch(endpoint, options = {}) {
-    // Pegar o token guardado no LocalStorage
+    
     const token = localStorage.getItem('token');
     
-    // Configurar o Header com base no JSON e na Autenticação
+    
     const config = {
         ...options,
         headers: {
@@ -23,7 +23,7 @@ async function apiFetch(endpoint, options = {}) {
             ...config,
         });
 
-        // Caso a API retorne no-content ou similar
+        
         if (response.status === 204) return null;
 
         const data = await response.json();
@@ -38,7 +38,7 @@ async function apiFetch(endpoint, options = {}) {
     }
 }
 
-// Rotas focadas em Autenticação
+
 export const authService = {
     login: (email, senha) => apiFetch('/login', {
         method: 'POST',
@@ -53,14 +53,14 @@ export const authService = {
     })
 };
 
-// Rotas focadas no Dashboard
+
 export const painelService = {
     obterEstatisticas: () => apiFetch('/painel', {
         method: 'GET',
     })
 };
 
-// Rotas focadas em Conteúdo e Trilhas
+
 export const conteudoService = {
     obterConteudos: (materia = '') => {
         const query = materia ? `?materia=${materia}` : '';
@@ -73,7 +73,7 @@ export const conteudoService = {
     })
 };
 
-// Rotas focadas em Exames/Simulados
+
 export const exameService = {
     obterExames: () => apiFetch('/exames', { method: 'GET' }),
     obterExamePorId: (id) => apiFetch(`/exames/${id}`, { method: 'GET' }),
@@ -88,7 +88,7 @@ export const exameService = {
     })
 };
 
-// Global Upload handler
+
 export const uploadService = {
     enviarPdf: async (file) => {
         const formData = new FormData();
@@ -96,12 +96,12 @@ export const uploadService = {
         return apiFetch('/upload', {
             method: 'POST',
             body: formData,
-            isFormData: true // we need to instruct our interceptor to NOT set application/json
+            isFormData: true 
         });
     }
 };
 
-// Rotas focadas em Questões Individuais
+
 export const questaoService = {
     obterQuestoes: () => apiFetch('/questoes', { method: 'GET' }),
     criarQuestao: (dados) => apiFetch('/questoes', {

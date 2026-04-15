@@ -8,7 +8,7 @@ export function AuthProvider({ children }) {
     const [carregando, setCarregando] = useState(true);
 
     useEffect(() => {
-        // Tentar revalidar o login caso já tenha um token ao abrir a aba
+        
         const revalidarSessao = async () => {
             const token = localStorage.getItem('token');
             if (token && token !== 'undefined') {

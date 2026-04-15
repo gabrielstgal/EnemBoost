@@ -1,4 +1,4 @@
-/* Praticar CSS */
+
 .page-header {
     margin-bottom: 32px;
 }
@@ -13,7 +13,7 @@
     font-size: 16px;
 }
 
-/* Filters */
+
 .filters {
     display: flex;
     gap: 12px;
@@ -54,7 +54,7 @@
 .dot-nature { background-color: var(--color-nature); }
 .dot-human { background-color: var(--color-human); }
 
-/* Featured Exam */
+
 .featured-exam {
     background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
     border-radius: var(--radius-xl);
@@ -117,7 +117,7 @@
     font-weight: 800;
 }
 
-/* Exams Grid */
+
 .exams-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -142,7 +142,7 @@
     gap: 6px;
 }
 
-/* Progress Banner */
+
 .progress-banner {
     background-color: white;
     border: 1px solid var(--border);

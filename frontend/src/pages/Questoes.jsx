@@ -12,20 +12,20 @@ export default function Questoes() {
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState(null);
 
-    // Filtro ativo
+    
     const [filtroMateria, setFiltroMateria] = useState('');
 
-    // Paginação
+    
     const [pagina, setPagina] = useState(1);
     const QUESTOES_POR_PAGINA = 5;
 
-    // Estado das respostas submetidas
+    
     const [respostas, setRespostas] = useState({});
 
-    // Estado temporário de opção selecionada antes de enviar
+    
     const [selecoesTemp, setSelecoesTemp] = useState({});
 
-    // Modal de criar questão (admin)
+    
     const [modalAberto, setModalAberto] = useState(false);
     const [salvando, setSalvando] = useState(false);
     const [novaQuestao, setNovaQuestao] = useState({
@@ -50,7 +50,7 @@ export default function Questoes() {
         setCarregando(true);
         setErro(null);
         try {
-            // A API não suporta filtro no serviço ainda, mas vamos buscar todas
+            
             const res = await questaoService.obterQuestoes();
             let lista = res.dados || [];
             
@@ -59,7 +59,7 @@ export default function Questoes() {
             }
             
             setQuestoes(lista);
-            setPagina(1); // Resetar página
+            setPagina(1); 
         } catch (err) {
             setErro('Erro ao carregar o banco de questões.');
         } finally {
@@ -68,7 +68,7 @@ export default function Questoes() {
     };
 
     const handleSelecionarOpcao = (questaoId, identificador) => {
-        // Não deixa trocar se já foi respondida e corrigida
+        
         if (respostas[questaoId]) return;
         
         setSelecoesTemp({
@@ -84,7 +84,7 @@ export default function Questoes() {
         try {
             const res = await questaoService.responderQuestao(questaoId, respostaUsuario);
             
-            // Incrementa estatística local para o Dashboard
+            
             const questoesResolvidas = Number(localStorage.getItem('questoesResolvidas') || 0);
             localStorage.setItem('questoesResolvidas', questoesResolvidas + 1);
 
@@ -105,7 +105,7 @@ export default function Questoes() {
         setPagina(pagina + 1);
     };
 
-    // Admin: criar questão
+    
     const handleOpcaoChange = (index, valor) => {
         const novasOpcoes = [...novaQuestao.opcoes];
         novasOpcoes[index] = { ...novasOpcoes[index], texto: valor };
@@ -155,7 +155,7 @@ export default function Questoes() {
                 )}
             </div>
 
-            {/* Area de Filtros */}
+            {}
             <div className="q-filters-container">
                 <div className="q-filters-label">
                     <Funnel weight="fill" /> Módulo:
@@ -201,16 +201,16 @@ export default function Questoes() {
                                     let btnClass = 'q-opcao-btn ';
                                     
                                     if (respondida) {
-                                        // Estilização após responder
+                                        
                                         if (respondida.corretaReal === opcao.identificador) {
-                                            btnClass += 'correct'; // A certa fica verde sempre
+                                            btnClass += 'correct'; 
                                         } else if (respondida.selecionada === opcao.identificador && !respondida.estaCorreta) {
-                                            btnClass += 'wrong'; // A errada que a pessoa escolheu fica vermelha
+                                            btnClass += 'wrong'; 
                                         } else {
-                                            btnClass += 'disabled'; // Resto desativado
+                                            btnClass += 'disabled'; 
                                         }
                                     } else {
-                                        // Estilização temporária
+                                        
                                         if (temp === opcao.identificador) {
                                             btnClass += 'selected';
                                         }
@@ -265,7 +265,7 @@ export default function Questoes() {
                 </div>
             )}
 
-            {/* Modal Admin: Criar Questão */}
+            {}
             {modalAberto && (
                 <div className="modal-overlay" onClick={() => setModalAberto(false)}>
                     <div className="modal-content" onClick={e => e.stopPropagation()}>

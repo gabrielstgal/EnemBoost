@@ -1,4 +1,4 @@
-/* Questoes CSS */
+
 .q-filters-container {
     display: flex;
     align-items: center;
@@ -58,7 +58,7 @@
     font-weight: 600;
 }
 
-/* Question List */
+
 .q-list {
     display: flex;
     flex-direction: column;
@@ -106,7 +106,7 @@
     margin-bottom: 32px;
 }
 
-/* Options */
+
 .q-opcoes {
     display: flex;
     flex-direction: column;
@@ -159,7 +159,7 @@
     flex: 1;
 }
 
-/* Verification States */
+
 .q-opcao-btn.correct {
     border-color: #10B981;
     background-color: #ECFDF5;
